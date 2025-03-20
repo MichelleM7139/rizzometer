@@ -1,0 +1,87 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the main logo */
+    align-items: center;
+    /* padding: 10px 20px; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    
+    background-color: rgb(255, 255, 255);
+}
+
+/* Container for the images */
+.logo-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Ensures the main logo stays centered */
+    align-items: center;
+}
+
+/* Main logo styling */
+.rizztest {
+    height: 100px; /* Adjust main logo size */
+    padding-top: 20px;
+    width: auto;
+}
+
+/* Position left image at the very left */
+.header-left {
+    position: absolute;
+    left: 0;
+    top:0;
+    height:  clamp(3rem, 10vw, 3.5vw); /* Adjust as needed */
+    width: auto;
+}
+
+/* Position right image at the very right */
+.header-right {
+    position: absolute;
+    right: 0;
+    top:0;
+    height: clamp(3vw, 10vw, 3.5vw); /* Adjust as needed */
+    width: auto;
+}
+.bg-left {
+    position: absolute;
+    left: 0;
+    top: 15vh;
+    height:500px;
+    width: auto;
+    
+}
+    
+.bg-right {
+    position: absolute;
+    right: 0;
+    top:15vh;
+    height:500px;
+    width: auto;
+    
+}
+/* .upload-page {
+    width: 100%;
+display: flex;
+justify-content: center;
+
+} */
+
+
+.title {
+    text-align: center;
+    left:100px;
+}
+@media (max-width: 768px) {
+    .header-left, .header-right {
+        display: none;
+    }
+    .rizztest {
+        height: 50px; /* Adjust main logo size */
+        padding-top: 20px;
+        width: auto;
+    }
+}

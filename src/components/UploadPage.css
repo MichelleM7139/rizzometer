@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+/* General Styling */
+.upload-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* width: 100%; */
+    padding: clamp(10px, 5vw, 50px);
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
+/* Adjust Title Size */
+.header h1 {
+    font-size: clamp(24px, 5vw, 60px); /* Scales dynamically */
+
+   
+}
+
+/* Upload Section */
+.upload-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: clamp(10px, 3vw, 30px);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: clamp(200px, 40vw, 500px);
+}
+
+/* Button Styling */
+.upload-button {
+    font-size: clamp(14px, 1.5vw, 20px);
+    padding: clamp(8px, 1.5vw, 15px) clamp(12px, 2vw, 25px);
+}
+
+/* Video Preview */
+.upload-section video {
+    width: clamp(200px, 50vw, 600px);
+    max-height: 300px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.content img{
+    width: clamp(200px, 50vw, 600px);
+    height: auto;
+}
+
+
+/* 3D Canvas
+.threeD-section {
+    width: clamp(300px, 60vw, 800px);
+    height: clamp(200px, 40vh, 500px);
+    margin-top: clamp(20px, 4vw, 50px);
+} */
+
+.rizz-meter progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.rizz-meter progress::-webkit-progress-bar {
+    background-color: #333;
+}
+
+.rizz-meter progress::-webkit-progress-value {
+    background-color: #00aaff;
+    box-shadow: 0 0 10px #00aaff;
+}
+.graph-container {
+    width: clamp(300px, 40vw, 800px);
+    height: clamp(200px, 25vh, 500px);
+    margin-top: clamp(20px, 2vw, 50px);
+}
+.examples-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .example-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .example-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .example-image {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .chart-container {
+    margin-left: 20px;
+  }
+  
+  .upload-section {
+    margin-top: 40px;
+  }
+  
+  
+  
+  

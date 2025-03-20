@@ -1,0 +1,258 @@
+/* @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
+:root {
+  font-family: San; 
+  line-height: 1.5;
+  font-weight: 800;
+
+  color-scheme: light dark;
+  color: #161515;
+  background-color: rgba(255, 255, 255);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.content img{
+  width: clamp(200px, 50vw, 600px);
+  height: auto;
+}
+
+.example {
+  /* add styles here */
+  width: clamp(100px, 20vw, 200px); /* set width */
+  height: auto; /* set height */
+  margin: 20px; /* add margin */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* add shadow */
+}
+
+/* General Styles */
+.upload-page {
+  text-align: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Center the page */
+}
+.header {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.head {
+  padding-top: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure it spans full width */
+
+}
+.search {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+.cartoon{
+  width:200px;
+  height: auto;
+}
+.upload-section {
+  margin-bottom: 50px;
+}
+
+.cartoon-section {
+  width: 100%;
+  height: 400px; /* Adjust based on your needs */
+  margin: 20px 0;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  
+}
+
+.examples-section {
+  margin-bottom: 20px;
+}
+
+.examples-container {
+  display: flex;
+  justify-content: space-between;
+  width: 120%;
+  gap: 20px;
+}
+
+.example-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 48%; /* Split the screen into two equal parts */
+}
+
+.example-card:hover {
+  transform: scale(1.05);
+}
+
+.example-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 100%;
+}
+
+
+
+.custom-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px black;
+  position: relative;
+}
+
+.custom-upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px black;
+}
+
+.custom-upload-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0px black;
+}
+
+.custom-upload-button input[type="file"] {
+  display: none; /* Hide default file input */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .examples-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .example-card {
+    width: 100%; /* Full width on mobile */
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .upload-section h2 {
+    font-size: 1.6rem;
+  }
+}
+/* Tablets */
+@media (max-width: 1024px) {
+ 
+  .upload-section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .upload-section h2 {
+    font-size: 1.2rem;
+  }
+  .head {
+    margin-top: 10px;
+    margin-right: 30px;
+  }
+  
+}
