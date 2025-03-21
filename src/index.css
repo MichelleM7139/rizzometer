@@ -103,7 +103,7 @@ button:focus-visible {
 }
 
 .head {
-  padding-top: 10vw;
+  padding-top: 7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,7 +162,7 @@ canvas {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  width: 48%; /* Split the screen into two equal parts */
+  width: 35%; /* Split the screen into two equal parts */
 }
 
 .example-card:hover {
@@ -180,8 +180,10 @@ canvas {
 .chart-container {
   width: 100%;
 }
-
-
+.processing-video
+{margin-top: 50px;
+width:40%;
+}
 
 .custom-upload-button {
   display: inline-flex;
@@ -212,6 +214,9 @@ canvas {
 
 .custom-upload-button input[type="file"] {
   display: none; /* Hide default file input */
+}
+.result-page{
+  margin-top: 200px;
 }
 
 

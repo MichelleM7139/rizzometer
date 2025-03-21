@@ -1,117 +1,16 @@
-// UploadPage.jsx
-import React, { useState } from 'react';
-import { Canvas } from '@react-three/fiber';
+import React, { useState, useRef, useEffect } from 'react';
+import { Canvas, useThree, extend,useFrame } from '@react-three/fiber';
 import { Bar, Radar, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, RadialLinearScale, PointElement, LineElement } from 'chart.js';
-import TextPressure from './Temp'; 
-import { useEffect } from 'react';
+import { OrbitControls, useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
+import TextPressure from './Temp';
 import FuzzyText from './FuzzyText';
-import { OrbitControls, useGLTF,useHelper } from '@react-three/drei'
-import { useRef } from 'react'
-import * as THREE from 'three'
 import { Suspense } from 'react';
+import HeartModel from './heart';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-class ErrorBoundary extends React.Component {
-  state = { hasError: false };
-  static getDerivedStateFromError() { return { hasError: true }; }
-  componentDidCatch(error, info) { console.error('3D Error:', error, info); }
-  render() { return this.state.hasError ? <div>3D Viewer Unavailable</div> : this.props.children; }
-}
-
-
-function ControlledOrbit() {
-  const controls = useRef();
-  return (
-    <OrbitControls
-      ref={controls}
-      enableZoom={true}
-      enablePan={true}
-      rotateSpeed={0.5}
-      maxDistance={10}
-      minDistance={1}
-    />
-  );
-}
-function Model() {
-  const group = useRef();
-  const { scene } = useGLTF('logos/1x/cartoon.glb');
-  
-  // Center and scale the model
-  scene.position.set(0, 0, 0);
-  scene.scale.set(1.2, 1.2, 1.2);
-
-  // Optional: Compute bounding box to center the model
-  const box = new THREE.Box3().setFromObject(scene);
-  const center = box.getCenter(new THREE.Vector3());
-  scene.position.sub(center);
-
-  return (
-    <group ref={group} dispose={null}>
-      <primitive object={scene} />
-    </group>
-  );
-}
-
-function Scene() {
-// Modified lighting setup
-const directionalLight = useRef();
-  
-// Optional: Add light helper
-useHelper(directionalLight, THREE.DirectionalLightHelper, 1, 'white');
-
-return (
-  <>
-    <ambientLight intensity={1.5} color="#ffffff" />
-    <directionalLight
-      ref={directionalLight}
-      position={[5, 5, 5]}
-      intensity={3.0}
-      castShadow
-      shadow-mapSize={[4096, 4096]}
-    />
-    <hemisphereLight
-      groundColor="#b0b0b0"
-      skyColor="#ffffff"
-      intensity={1.0}
-    />
-    <pointLight
-      position={[-5, 3, -5]}
-      intensity={1.5}
-      color="#ffffff"
-    />
-    <Model />
-    <ControlledOrbit />
-  </>
-);
-}
-
-
-function HeartCharacter() {
-  return (
-    <div className="cartoon-section">
-      <Canvas
-        camera={{ 
-          position: [0, 0.5, 4],  // Adjusted camera position
-          fov: 55,
-          near: 0.1,
-          far: 1000 
-        }}
-        gl={{
-          antialias: true,
-          powerPreference: "high-performance"
-        }}
-        onCreated={({ gl }) => {
-          gl.shadowMap.enabled = true;
-          gl.shadowMap.type = THREE.PCFSoftShadowMap;
-        }}
-      >
-        <Suspense fallback={<div className="loading-3d">Loading Character...</div>}>
-          <Scene />
-        </Suspense>
-      </Canvas>
-    </div>
-  );
-}
 // Register ChartJS components
 ChartJS.register(
   CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
@@ -119,6 +18,9 @@ ChartJS.register(
 );
 
 const UploadPage = () => {
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap';
@@ -136,7 +38,19 @@ const UploadPage = () => {
 
   const handleVideoUpload = (e) => {
     const file = e.target.files[0];
-    setVideo(URL.createObjectURL(file));
+    
+    if (file) {
+      console.log("Video file selected:", file.name);
+      setVideo(URL.createObjectURL(file));
+
+      // Ensure the file is valid before navigating
+      setTimeout(() => {
+        console.log("Navigating to processing page...");
+        navigate('/processing');
+      }, 1000);
+    } else {
+      console.error("No file selected.");
+    }
   };
 
   // Data for the main bar charts
@@ -253,30 +167,7 @@ const UploadPage = () => {
         
       </header>
 
-      <ErrorBoundary>
-        <div className="cartoon-section">
-          <Canvas
-            camera={{ 
-              position: [0, 0, 3], 
-              fov: 45,
-              near: 0.1,
-              far: 1000 
-            }}
-            gl={{
-              antialias: true,
-              powerPreference: "high-performance"
-            }}
-            onCreated={({ gl }) => {
-              gl.shadowMap.enabled = true;
-              gl.shadowMap.type = THREE.PCFSoftShadowMap;
-            }}
-          >
-            <Suspense fallback={<div className="loading-3d">Loading Character...</div>}>
-              <Scene />
-            </Suspense>
-          </Canvas>
-        </div>
-      </ErrorBoundary>
+      <HeartModel />
       
       <div className="upload-section">
           <h2>Upload Your Conversation Video</h2>
@@ -284,6 +175,7 @@ const UploadPage = () => {
                 UPLOAD
              <input type="file" accept="video/*" onChange={handleVideoUpload} />
             </label>
+           
           </div>
 
       <div className="content">
@@ -337,11 +229,8 @@ const UploadPage = () => {
 
         
 
-        <div className="3d-section">
-          <Canvas>
-            {/* Add 3D interactive elements here */}
-          </Canvas>
-        </div>
+       
+
       </div>
     </div>
   );

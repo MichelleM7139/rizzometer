@@ -5,7 +5,7 @@
 // src/components/ResultPage.jsx
 const ResultPage = () => {
     return (
-      <div>
+      <div className="result-page">
         <h1>Result Page</h1>
         <p>Here are the results of your conversation analysis.</p>
       </div>
